@@ -3,10 +3,16 @@ import {Yellow, Red, Dark} from './Block'
 import './App.css';
 import Minimap, {Child as ChildComponent} from 'react-minimap';
 import 'react-minimap.css'
-
+import Paper from 'material-ui/Paper';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 /*eslint-disable */
 const COMMIT_HASH = __COMMIT_HASH__
 /*eslint-enable */
+
+
+const styles ={
+  paper: {margin: '64px 0 0 0'}
+}
 
 
 const YELLOW = 'yellow'
@@ -37,9 +43,9 @@ class App extends Component {
     setInterval(() => {
       this.setState({
         ...this.state,
-        random1: {left: this.random(3000), top: this.random(100)},
-        random2: {left: this.random(3000), top: this.random(100)},
-        random3: {left: this.random(3000), top: this.random(100)},
+        random1: {left: this.random(300), top: this.random(100)},
+        random2: {left: this.random(300), top: this.random(100)},
+        random3: {left: this.random(300), top: this.random(100)},
       })
     }, 2000)
   }
@@ -80,7 +86,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="nav-bar">
-          <span><a href="https://github.com/jeremy-carbonne/react-minimap">Github react-minimap</a></span>
+          <span><a>Mini-map Prototype</a></span>
           <div className="keep-aspect-ratio">
             keep aspect ratio
             <input 
@@ -92,20 +98,31 @@ class App extends Component {
           </div> 
         </div>
         <div className="container">
-
-          <Minimap selector=".box" keepAspectRatio={this.state.checked} childComponent={this.renderChild.bind(this)}>
-            <Dark />
-            <Yellow className="pos-rlt" style={random1}/>
-            <Red className="pos-rlt" style={{width: "200px", left: '4000px', top: '100px'}}/>
-            <Yellow className="pos-rlt" style={random2} />
-            <Dark className="pos-rlt" style={random3} />
-            <Yellow className="pos-rlt" style={{width: "200px", left: '2000px'}} />
-            <Dark className="pos-rlt" style={{width: "200px", left: '2000px', marginTop: "30px" }}/>
-
-            <Yellow />
-            <Dark />
-            <Yellow />
-          </Minimap>
+        
+          <MuiThemeProvider>
+            <Minimap selector=".box" keepAspectRatio={this.state.checked} childComponent={this.renderChild.bind(this)}>
+              <Paper style={styles.paper} rounded={false} zDepth={0}>
+                    <Yellow className="pos-rlt"/>
+                    <Red className="pos-rlt" style={{width:"200px", left:'40px', top: '30px'}}/>
+                    <Yellow className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Red className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Yellow className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Red className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Dark className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Red className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Yellow className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Red className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Dark className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Red className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Yellow className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Red className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Red className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Yellow className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Red className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+                    <Yellow className="pos-rlt" style={{width:"200px", left:'40px'}}/>
+              </Paper>
+            </Minimap>
+          </MuiThemeProvider>
         </div>
         <div className="commit-hash">{COMMIT_HASH}</div>
       </div>
