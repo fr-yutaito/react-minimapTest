@@ -22,9 +22,10 @@
 }
 
 .box {
-	width: 200px;
+	width: 100%;
 	padding: 10px 0px ;
-}
+} 
+
 .yellow { background-color: #FFEE58; }
 .red { background-color: #f44336; }
 .blue { background-color: blue; }
