@@ -31,7 +31,9 @@
 .blue { background-color: blue; }
 
 .minimap {
-	margin: 30px
+	margin: 30px;
+	position: fixed;
+	left: 0;
 }
 
 .card-container {

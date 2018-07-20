@@ -4,11 +4,13 @@
 	background-color: rgba(0, 0, 0, 0.4);
 	z-index: 1;
 	cursor: move;
+	
 }
 
 .minimap {
 	float: left;
-	position: fixed; 
+	position: fixed;
+	left: 0;
 	z-index: 1;
 	margin: 10px;
 	background-color: rgba(0, 0, 0, 0.29);
@@ -18,6 +20,8 @@
 .minimap-container {
 	width: 100%;
 	height: 100%;
+	position: fixed;
+	left: 0;
 }
 
 .minimap-container-scroll {

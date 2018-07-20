@@ -14,7 +14,7 @@ export class Child extends React.Component {
 
   render() {
     const {width, height, left, top} = this.props
-    return (
+    return (   
       <div
         style={{
           position: 'absolute',

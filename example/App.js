@@ -24,7 +24,7 @@ const HEX = {
   [YELLOW]: 'FFAB00', 
   [RED]   : 'DD2C00',
   [DARK]  : '212121',
-  [SIMPLE] : '00FFFF',
+  [SIMPLE] : 'ffffff',
 }
 
 class App extends Component {
@@ -59,6 +59,7 @@ class App extends Component {
       return <ChildComponent {...{width, height, left, top}} />
 
     return (
+      <div className="t">
       <div
         style={{
           position: 'absolute',
@@ -69,6 +70,8 @@ class App extends Component {
           backgroundColor: '#' + HEX[classNameFound],
         }}
       />
+      </div>
+      
     )
   }
 
