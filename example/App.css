@@ -35,6 +35,7 @@
 	position: fixed;
 	left: 0;
 }
+/** this is where to handle the position of the minimap.*/
 
 .card-container {
 	color: #d4cd96;

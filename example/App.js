@@ -12,7 +12,6 @@ const COMMIT_HASH = __COMMIT_HASH__
 
 const styles ={
   paper: {margin: '64px 0 0 0'}
-  //list: {}
 }
 
 const YELLOW = 'yellow'
@@ -25,23 +24,25 @@ const HEX = {
   [RED]   : 'DD2C00',
   [DARK]  : '212121',
   [SIMPLE] : 'ffffff',
+
+  // here, I can separate each component types, and assign them each main theme color from material-ui.
 }
 
 class App extends Component {
 
   state = {
-    checked: false,
+    checked: true,
   }
 
-  componentDidMount() {
+  // componentDidMount() {
 
-    setInterval(() => {
-      this.setState({
-        ...this.state,
+  //   setInterval(() => {
+  //     this.setState({
+  //       ...this.state,
         
-      })
-    }, 2000)
-  }
+  //     })
+  //   }, 2000)
+  // }
 
   renderChild({ width, height, left, top, node }) {
 
@@ -77,41 +78,89 @@ class App extends Component {
 
   render() {
 
-    return (
+    // let   = (hidden) => {
+    //   if (!hidden) {
+    //     return 'Minimap'
+    //   }
+
+    //   return ''
+    // }
+
+    if(this.state.checked){
+      return (
+            <div className="App">
+              <div className="nav-bar">
+                <span><a>Mini-map Prototype</a></span>
+                <div className="keep-aspect-ratio">
+                  on/off
+                  <input 
+                    type="checkbox" 
+                    checked={this.state.checked} 
+                    onChange={(event) => {
+                      this.setState({...this.state, checked: event.target.checked})}} 
+                  />
+                </div> 
+
+              </div>
+              <div className="container">
+              
+                <MuiThemeProvider>
+                  <Minimap selector=".simplelist" keepAspectRatio={true} childComponent={this.renderChild.bind(this)}>
+                    <Paper style={styles.paper} rounded={false} zDepth={0}>
+                          <Yellow className="pos-rlt"/>
+                          <Red className="pos-rlt"/>
+                          <SimpleList className="simplelist1"/>
+                          <SimpleList className="simplelist2"/>
+                          <SimpleList className="simplelist3"/>
+                          <SimpleList className="simplelist4"/>
+                          <SimpleList className="simplelist5"/>
+                          <SimpleList className="simplelist6"/>
+                          <SimpleList className="simplelist7"/>
+
+                    </Paper>
+                  </Minimap>
+                </MuiThemeProvider>
+              </div>
+            </div>
+          );
+    }else{
+       return (
       <div className="App">
         <div className="nav-bar">
           <span><a>Mini-map Prototype</a></span>
-          <div className="keep-aspect-ratio">
-            keep aspect ratio
-            <input 
-              type="checkbox" 
-              checked={this.state.checked} 
-              onChange={(event) => {
-                this.setState({...this.state, checked: event.target.checked})}} 
-            />
-          </div> 
+           <div className="keep-aspect-ratio">
+             on/off
+             <input 
+               type="checkbox" 
+               checked={this.state.checked} 
+               onChange={(event) => {
+                 this.setState({...this.state, checked: event.target.checked})}} 
+             />
+           </div> 
+
         </div>
         <div className="container">
         
           <MuiThemeProvider>
-            <Minimap selector=".simplelist" keepAspectRatio={this.state.checked} childComponent={this.renderChild.bind(this)}>
               <Paper style={styles.paper} rounded={false} zDepth={0}>
                     <Yellow className="pos-rlt"/>
                     <Red className="pos-rlt"/>
-                    <SimpleList className="simplelist"/>
-                    <SimpleList className="simplelist"/>
-                    <SimpleList className="simplelist"/>
-                    <SimpleList className="simplelist"/>
-                    <SimpleList className="simplelist"/>
-                    <SimpleList className="simplelist"/>
-                    <SimpleList className="simplelist"/>
+                    <SimpleList className="simplelist1"/>
+                    <SimpleList className="simplelist2"/>
+                    <SimpleList className="simplelist3"/>
+                    <SimpleList className="simplelist4"/>
+                    <SimpleList className="simplelist5"/>
+                    <SimpleList className="simplelist6"/>
+                    <SimpleList className="simplelist7"/>
 
               </Paper>
-            </Minimap>
           </MuiThemeProvider>
         </div>
       </div>
     );
+    }
+
+   
   }
 }
 

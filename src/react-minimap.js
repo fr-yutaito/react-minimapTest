@@ -64,7 +64,7 @@ export class Minimap extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.keepAspectRatio !== this.props.keepAspectRatio) {
+    if (nextProps.hidden !== this.props.hidden) {
       setTimeout(this.synchronize);
     } else if (nextProps.children !== this.props.children) {
       setTimeout(this.synchronize);
@@ -81,7 +81,7 @@ export class Minimap extends React.Component {
   }
 
   init() {
-    const {childComponent, keepAspectRatio} = this.props;
+    const {childComponent, keepAspectRatio, hidden} = this.props;
     const ChildComponent = childComponent;
     const {scrollWidth, scrollHeight, scrollTop, scrollLeft} = this.source;
     const sourceRect = this.source.getBoundingClientRect();
@@ -90,7 +90,6 @@ export class Minimap extends React.Component {
 
     let ratioX = width / scrollWidth
     let ratioY = height / scrollHeight
-
     if (keepAspectRatio) {
       if (ratioX < ratioY) {
         ratioY = ratioX
