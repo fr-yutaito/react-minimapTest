@@ -5,13 +5,16 @@ import Minimap, {Child as ChildComponent} from 'react-minimap';
 import 'react-minimap.css'
 import Paper from 'material-ui/Paper';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Toggle from 'material-ui/Toggle';
 /*eslint-disable */
 const COMMIT_HASH = __COMMIT_HASH__
 /*eslint-enable */
 
 
 const styles ={
-  paper: {margin: '64px 0 0 0'}
+  paper: {margin: '64px 0 0 0'},
+  toggle: {marginBottom: 16},
+  labelStyle : {color : 'white'}
 }
 
 const YELLOW = 'yellow'
@@ -28,21 +31,13 @@ const HEX = {
   // here, I can separate each component types, and assign them each main theme color from material-ui.
 }
 
+
+
 class App extends Component {
 
   state = {
     checked: true,
   }
-
-  // componentDidMount() {
-
-  //   setInterval(() => {
-  //     this.setState({
-  //       ...this.state,
-        
-  //     })
-  //   }, 2000)
-  // }
 
   renderChild({ width, height, left, top, node }) {
 
@@ -78,32 +73,26 @@ class App extends Component {
 
   render() {
 
-    // let   = (hidden) => {
-    //   if (!hidden) {
-    //     return 'Minimap'
-    //   }
-
-    //   return ''
-    // }
-
     if(this.state.checked){
-      return (
+     return (
             <div className="App">
-              <div className="nav-bar">
+              <div className="nav-bar">`
                 <span><a>Mini-map Prototype</a></span>
-                <div className="keep-aspect-ratio">
-                  on/off
-                  <input 
-                    type="checkbox" 
-                    checked={this.state.checked} 
-                    onChange={(event) => {
-                      this.setState({...this.state, checked: event.target.checked})}} 
+                <div className="on-off">
+                <MuiThemeProvider>
+                  <Toggle
+                    label = "on/off"
+                    defaultToggled = {true}
+                    style = {styles.toggle}
+                    toggled = {this.state.checked}
+                    labelStyle = {styles.labelStyle}
+                    onToggle = {(event) => {
+                      this.setState({...this.state, checked: event.target.checked})}}
                   />
+                  </MuiThemeProvider>
                 </div> 
-
               </div>
               <div className="container">
-              
                 <MuiThemeProvider>
                   <Minimap selector=".simplelist" keepAspectRatio={true} childComponent={this.renderChild.bind(this)}>
                     <Paper style={styles.paper} rounded={false} zDepth={0}>
@@ -116,7 +105,6 @@ class App extends Component {
                           <SimpleList className="simplelist5"/>
                           <SimpleList className="simplelist6"/>
                           <SimpleList className="simplelist7"/>
-
                     </Paper>
                   </Minimap>
                 </MuiThemeProvider>
@@ -128,16 +116,18 @@ class App extends Component {
       <div className="App">
         <div className="nav-bar">
           <span><a>Mini-map Prototype</a></span>
-           <div className="keep-aspect-ratio">
-             on/off
-             <input 
-               type="checkbox" 
-               checked={this.state.checked} 
-               onChange={(event) => {
-                 this.setState({...this.state, checked: event.target.checked})}} 
-             />
+           <div className="on-off">
+             <MuiThemeProvider>
+                  <Toggle
+                    label = "on/off"
+                    style = {styles.toggle}
+                    toggled = {this.state.checked}
+                    labelStyle = {styles.labelStyle}
+                    onToggle = {(event) => {
+                      this.setState({...this.state, checked: event.target.checked})}}
+                  />
+                  </MuiThemeProvider>
            </div> 
-
         </div>
         <div className="container">
         
@@ -159,8 +149,6 @@ class App extends Component {
       </div>
     );
     }
-
-   
   }
 }
 
